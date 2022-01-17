@@ -6,3 +6,6 @@ class Tile(pygame.sprite.Sprite):
         self.image=pygame.Surface(tile_size)
         self.image.fill('brown')
         self.rect=self.image.get_rect(x=x,y=y)
+    
+    def update(self,move_speed):
+        self.rect.x+=move_speed

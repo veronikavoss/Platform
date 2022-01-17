@@ -15,7 +15,7 @@ class Player(pygame.sprite.Sprite):
         self.rect=self.image.get_rect(topleft=topleft)
         self.direction=pygame.math.Vector2(0,0)
         self.dx,self.dy=self.direction.x,self.direction.y
-        self.move_speed=5
+        self.move_speed=player_speed
         self.jump_speed=-15
         self.gravity=0.8
         self.jumped=False
@@ -44,6 +44,17 @@ class Player(pygame.sprite.Sprite):
                 self.jumped=True
         else:
             self.jumped=False
+    
+    def scrolling(self):
+        if self.rect.centerx<screen_width/4 and self.dx<0:
+            self.move_speed=0
+            return player_speed
+        elif self.rect.centerx>screen_width-screen_width/4 and self.dx>0:
+            self.move_speed=0
+            return -player_speed
+        else:
+            self.move_speed=player_speed
+            return 0
     
     def set_action(self):
         if self.dy<0:
